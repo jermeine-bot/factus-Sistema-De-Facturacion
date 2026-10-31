@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8fafc" />
+    <script>
+      try {
+        const raw = localStorage.getItem('factus-ui-settings');
+        const preference = raw ? JSON.parse(raw).preference : 'light';
+        const systemDark =
+          window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = preference === 'system' ? (systemDark ? 'dark' : 'light') : preference;
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+        document.documentElement.style.colorScheme = theme;
+      } catch (error) {
+        /* localStorage may be unavailable in private contexts. */
+      }
+    </script>
+    <meta
+      name="description"
+      content="Factus — plataforma de gestión empresarial: punto de venta, inventario, compras, caja y reportes en tiempo real."
+    />
+    <title>Factus · Gestión empresarial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

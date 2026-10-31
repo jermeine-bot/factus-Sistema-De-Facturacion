@@ -1,0 +1,260 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light enterprise surface (slate-50 / white) */
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 346.8 77.2% 49.8%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 160.1 84.1% 30.4%;
+    --success-foreground: 0 0% 100%;
+    --warning: 32.1 94.6% 43.7%;
+    --warning-foreground: 26 83.3% 14.1%;
+    --info: 200.4 98% 39.4%;
+    --info-foreground: 0 0% 100%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Default corporate dark surface (slate-950 / slate-900) */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 47.4% 11.2%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 47.4% 11.2%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 350 89% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 158 64% 52%;
+    --success-foreground: 150 80% 4%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 30 80% 6%;
+    --info: 198.4 93.2% 59.6%;
+    --info-foreground: 200 90% 5%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 21%;
+    --ring: 217.2 91.2% 59.8%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+    background-image: radial-gradient(900px 420px at 12% -10%, hsl(221 83% 53% / 0.035), transparent 65%);
+    background-attachment: fixed;
+  }
+
+  .dark body {
+    background-image: radial-gradient(900px 420px at 12% -10%, hsl(217 91% 60% / 0.06), transparent 65%);
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.22);
+    color: hsl(var(--foreground));
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.28);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.45);
+    background-clip: content-box;
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring) / 0.55);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .surface {
+    @apply rounded-xl border border-border bg-card shadow-sm;
+  }
+
+  .surface-muted {
+    @apply rounded-xl border border-border bg-muted/30;
+  }
+
+  .glass {
+    @apply border border-border bg-card shadow-sm;
+  }
+
+  .glass-strong {
+    @apply border border-border bg-card shadow-sm;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent dark:from-blue-400 dark:to-sky-400;
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+    @apply font-mono tracking-tight;
+  }
+
+  .hairline {
+    @apply border-border;
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .grid-mask {
+    background-image:
+      linear-gradient(to right, hsl(var(--foreground) / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--foreground) / 0.045) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 75%);
+  }
+
+  .scroll-fade {
+    mask-image: linear-gradient(to bottom, transparent, black 12px, black calc(100% - 12px), transparent);
+  }
+
+  .table-dense th {
+    @apply h-10 bg-slate-50 px-4 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground dark:bg-slate-900/80;
+  }
+  .table-dense td {
+    @apply px-4 py-3 text-sm;
+  }
+}
+
+@media print {
+  @page {
+    margin: 12mm;
+  }
+
+  .print-hidden {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: #0f172a !important;
+  }
+
+  /* When an invoice/proforma sheet is open, print only the sheet.
+     Radix portals dialogs into <body>, so hiding #root removes the app shell
+     without affecting the printable content. */
+  body:has(.print-sheet) > #root {
+    display: none !important;
+  }
+
+  body:has(.print-sheet) [role='dialog'] {
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+    gap: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .print-sheet {
+    position: static !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    padding: 0 !important;
+  }
+
+  .print-sheet .text-muted-foreground,
+  .print-sheet .text-muted-foreground\/60 {
+    color: #475569 !important;
+  }
+
+  .print-sheet .text-primary {
+    color: #1d4ed8 !important;
+  }
+
+  .print-sheet .text-destructive {
+    color: #be123c !important;
+  }
+
+  .print-sheet .text-warning {
+    color: #b45309 !important;
+  }
+
+  .print-sheet .bg-muted\/40,
+  .print-sheet .bg-muted\/30,
+  .print-sheet .bg-card,
+  .print-sheet .bg-popover {
+    background: #f8fafc !important;
+  }
+
+  .print-sheet .border-border,
+  .print-sheet .divide-border > * {
+    border-color: #e2e8f0 !important;
+  }
+}
